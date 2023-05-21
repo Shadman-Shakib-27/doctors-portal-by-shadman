@@ -3,7 +3,7 @@ import chair from "../../assets/images/chair.png";
 import bg from '../../assets/images/bg.png'
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { format } from "date-fns";
+
 
 const AppoinmentBanner = ({date,setDate}) => {
 
