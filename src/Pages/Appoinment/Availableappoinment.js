@@ -28,7 +28,13 @@ const Availableappoinment = ({ date }) => {
         ))}
       </div>
       {/* Conditional Rendering */}
-      {treatment && <BookingModal treatment={treatment}></BookingModal>}
+      {treatment && (
+        <BookingModal
+          date={date}
+          setTreatment={setTreatment}
+          treatment={treatment}
+        ></BookingModal>
+      )}
     </div>
   );
 };

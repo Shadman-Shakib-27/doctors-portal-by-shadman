@@ -20,7 +20,7 @@ const Service = ({ service, setTreatment }) => {
           {service.slots.length} {service.slots.length > 0 ? "Spaces" : "Space"}{" "}
           Available.
         </p>
-        {/* Button Disabled Korar Jonne. */}
+        {/*Button Disabled Korar Jonne.*/}
 
         <label
           onClick={() => setTreatment(service)}
