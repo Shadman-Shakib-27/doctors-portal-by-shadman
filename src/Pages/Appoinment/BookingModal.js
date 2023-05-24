@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 
-const BookingModal = ({ date, treatment, setTreatment }) => {
+const BookingModal = ({ date, treatment,setTreatment }) => {
   const { slots } = treatment;
   //   Form Submit
   const handleFormSubmit = (event) => {
