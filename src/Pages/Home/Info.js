@@ -10,7 +10,7 @@ const Info = () => {
       <InfoCard cardTitle="Opening Hours" img={clock}></InfoCard>
       <InfoCard
         cardTitle="Visit our location"
-        bgClass="bg-gray-700"
+        bgClass="bg-accent"
         img={map}
       ></InfoCard>
       <InfoCard cardTitle="Contact us now" img={phone}></InfoCard>
