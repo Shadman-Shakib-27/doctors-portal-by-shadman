@@ -45,14 +45,14 @@ const Login = () => {
               />
               <label className="label">
                 {errors.email?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
+                  <p className="label-text-alt text-red-500">
                     {errors.email.message}
-                  </span>
+                  </p>
                 )}
                 {errors.email?.type === "pattern" && (
-                  <span className="label-text-alt text-red-500">
+                  <p className="label-text-alt text-red-500">
                     {errors.email.message}
-                  </span>
+                  </p>
                 )}
               </label>
             </div>
@@ -74,20 +74,20 @@ const Login = () => {
                   },
                   minLength: {
                     value: 6,
-                    message: "Password must be 6 digit or more",
+                    message: "Password Must Be 6 Digit or More",
                   },
                 })}
               />
               <label className="label">
                 {errors.password?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
+                  <p className="label-text-alt text-red-500">
                     {errors.password.message}
-                  </span>
+                  </p>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <span className="label-text-alt text-red-500">
+                  <p className="label-text-alt text-red-500">
                     {errors.password.message}
-                  </span>
+                  </p>
                 )}
               </label>
             </div>
