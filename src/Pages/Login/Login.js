@@ -27,6 +27,7 @@ const Login = () => {
               <label className="label">
                 <span className="label-text font-semibold">Email</span>
               </label>
+              {/* All From UseForm Hooks */}
               <input
                 type="email"
                 placeholder="Your Email"
@@ -36,17 +37,22 @@ const Login = () => {
                     value: true,
                     message: "Email is Required",
                   },
-                  pattern: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                  message: "Provide a Valid Email Address",
+                  pattern: {
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                    message: "Provide a Valid Email Address",
+                  },
                 })}
               />
               <label className="label">
-              {errors.email?.type === "required" && (
-                  <span className="label-text-alt text-red-500">{errors.email.message}</span>
+                {errors.email?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
                 )}
                 {errors.email?.type === "pattern" && (
-                  <span className="label-text-alt text-red-500">{errors.email.message}</span>
-                  
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
                 )}
               </label>
             </div>
@@ -66,13 +72,22 @@ const Login = () => {
                     value: true,
                     message: "Password is Required",
                   },
-                  pattern:  /^[A-Za-z]\w{7,14}$/,
-                  message: "Password must be 6 digit or more",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be 6 digit or more",
+                  },
                 })}
               />
               <label className="label">
-                {errors.firstName?.type === "required" && (
-                  <span className="label-text-alt">A</span>
+                {errors.password?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
                 )}
               </label>
             </div>
