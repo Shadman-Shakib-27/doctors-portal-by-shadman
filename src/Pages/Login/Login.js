@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import Loading from "../Shared/Loading";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
   const {
     register,
@@ -12,11 +18,28 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
+  };
+
+  // User Sign In Error
+  let signinError;
+  if (gError || error)
+    signinError = (
+      <small className="text-red-500">
+        {/* Optional Chaining */}
+        {error?.message || gError?.message}
+      </small>
+    );
+
+  if (loading || gLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div class="card w-96  shadow-xl p-8">
+    <div className="flex h-auto lg:mt-16 justify-center items-center">
+      <div class="card w-96 shadow-2xl p-8">
         <div class="card-body">
           <h2 class="text-center text-2xl font-bold">Login</h2>
 
@@ -92,6 +115,7 @@ const Login = () => {
               </label>
             </div>
             {/* Password Part */}
+            {signinError}
             <input
               className="btn mt-2 text-white w-full max-w-xs"
               type="submit"
