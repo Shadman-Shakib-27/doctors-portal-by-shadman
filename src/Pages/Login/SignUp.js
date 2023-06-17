@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import Loading from "../Shared/Loading";
 import { Link } from "react-router-dom";
 
-
-const Login = () => {
+const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const {
     register,
@@ -22,7 +21,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    signInWithEmailAndPassword(data.email, data.password);
+    createUserWithEmailAndPassword(data.email, data.password);
   };
 
   // User Sign In Error
@@ -38,15 +37,45 @@ const Login = () => {
   if (loading || gLoading) {
     return <Loading></Loading>;
   }
-
   return (
-    <div className="flex h-auto lg:mt-16 justify-center items-center">
+    <div className="flex lg:mt-4 justify-center items-center">
       <div class="card w-96 shadow-2xl p-8">
         <div class="card-body">
-          <h2 class="text-center text-2xl font-bold">Login</h2>
+          <h2 class="text-center text-2xl font-bold">Sign Up</h2>
 
           {/* Form Part */}
           <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Name Part */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text font-semibold">Name</span>
+              </label>
+              {/* All From UseForm Hooks */}
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name is Required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <p className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </p>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <p className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </p>
+                )}
+              </label>
+            </div>
+            {/* Name Part */}
             {/* Email Part */}
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -125,9 +154,9 @@ const Login = () => {
             />
           </form>
           <small>
-            New To Doctors Portal?{" "}
-            <Link to="/Signup" className="text-primary">
-              Create New Account
+            Already Have An Account?{" "}
+            <Link to="/Login" className="text-primary">
+              Please Login
             </Link>
           </small>
         </div>
@@ -139,9 +168,8 @@ const Login = () => {
           Continue With Google
         </button>
       </div>
-     
     </div>
   );
 };
 
-export default Login;
+export default SignUp;
