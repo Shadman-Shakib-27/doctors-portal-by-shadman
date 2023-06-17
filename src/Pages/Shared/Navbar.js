@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+  // For Update User
+  const [user, loading, error] = useAuthState(auth);
+
+  const logout = () => {
+    signOut(auth);
+  };
   const menuItem = (
     <>
       <li className="font-semibold">
@@ -19,8 +28,15 @@ const Navbar = () => {
       <li className="font-semibold">
         <Link to="/About">About</Link>
       </li>
+      {/* Conditional Rendering */}
       <li className="font-semibold">
-        <Link to="/Login">Login</Link>
+        {user ? (
+          <button className="btn btn-primary text-white font-bold" onClick={logout}>
+            Sign Out
+          </button>
+        ) : (
+          <Link to="/Login">Login</Link>
+        )}
       </li>
     </>
   );
