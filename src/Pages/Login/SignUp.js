@@ -160,7 +160,7 @@ const SignUp = () => {
             <input
               className="btn mt-2 text-white w-full max-w-xs"
               type="submit"
-              value="Login"
+              value="Sign Up"
             />
           </form>
           <small>
