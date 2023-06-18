@@ -7,6 +7,7 @@ import Login from "./Pages/Login/Login";
 import Appoinment from "./Pages/Appoinment/Appoinment";
 import SignUp from "./Pages/Login/SignUp";
 import RequireAuth from "./Pages/Login/RequireAuth";
+import SendPasswordReset from "../src/Pages/Login/SendPasswordReset"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route path="/PassReset" element={<SendPasswordReset></SendPasswordReset>}></Route>
       </Routes>
     </div>
   );

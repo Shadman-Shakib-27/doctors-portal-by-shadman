@@ -132,6 +132,11 @@ const Login = () => {
               value="Login"
             />
           </form>
+
+          <small className="text-primary">
+            <Link to="/PassReset">Forgot Password?</Link>
+          </small>
+
           <small>
             New To Doctors Portal?{" "}
             <Link to="/Signup" className="text-primary">
