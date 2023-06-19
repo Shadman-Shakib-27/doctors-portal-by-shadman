@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SendPasswordReset = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +22,8 @@ const SendPasswordReset = () => {
   }
   return (
     <div className="App mt-48">
+      {/* For Toast Message */}
+      <ToastContainer className="justify-center" />
       <hr />
       <h1 className="mb-4 mt-4 text-3xl font-serif">
         Type Your Email To Reset Your Password!!!
@@ -39,7 +43,7 @@ const SendPasswordReset = () => {
         onClick={async () => {
           const success = await sendPasswordResetEmail(email);
           if (success) {
-            alert("Sent Email");
+            toast("Password Reset Email Sent Succesfully");
           }
         }}
       >

@@ -6,7 +6,7 @@ const Loading = () => {
       <div class="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
         <div class="flex justify-center">
           <div
-            class="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-accent rounded-full"
+            class="animate-spin inline-block w-6  text-accent rounded-full"
             role="status"
             aria-label="loading"
           >
